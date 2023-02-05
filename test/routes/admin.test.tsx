@@ -5,7 +5,7 @@ describe("Admin Page", () => {
   it('has a "hello admin" text', () => {
     render(<Admin />);
 
-    const helloText = screen.getByText(/hello, admin/i);
+    const helloText = screen.getByText(/adicionar novo lugar/i);
 
     expect(helloText).toBeVisible();
   });
