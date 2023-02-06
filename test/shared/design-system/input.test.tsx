@@ -14,7 +14,7 @@ describe("Input", () => {
     );
   }
 
-  describe("Props", () => {
+  describe("First render", () => {
     it("should render the input with the label", () => {
       const label = "Minha label";
       renderInput({ label });
