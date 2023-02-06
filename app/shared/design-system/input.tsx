@@ -8,7 +8,13 @@ export default function Input({ name, label, value }: InputProps) {
       <label htmlFor={name} aria-labelledby={name}>
         {label}
       </label>
-      <input type="text" name={name} id={name} value={inputValue} />
+      <input
+        type="text"
+        name={name}
+        id={name}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
     </div>
   );
 }

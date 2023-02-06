@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Input from "~/shared/design-system/input";
 
 describe("Input", () => {
@@ -33,6 +34,28 @@ describe("Input", () => {
       const input = screen.getByRole("textbox");
 
       expect(input).toHaveValue(initialValue);
+    });
+  });
+
+  describe("User interactions", () => {
+    it("should change the input value when user types a different value", async () => {
+      userEvent.setup();
+
+      const initialValue = "Initial Value";
+      const newValue = "New value typed by user";
+      const name = "my-custom-name-2";
+
+      renderInput({ value: initialValue, name });
+
+      const input = screen.getByRole("textbox");
+
+      expect(input).toHaveValue(initialValue);
+
+      await userEvent.clear(input);
+
+      await userEvent.type(input, newValue);
+
+      expect(input).toHaveValue(newValue);
     });
   });
 });
