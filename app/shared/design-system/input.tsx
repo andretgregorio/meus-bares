@@ -1,15 +1,10 @@
-type InputProps = {
-  name: string;
-  label: string;
-};
-
-export default function Input({ name, label }: InputProps) {
+export default function Input({ name, label, value }: InputProps) {
   return (
     <div>
-      <label htmlFor={name} aria-labelledby={label}>
+      <label htmlFor={name} aria-labelledby={name}>
         {label}
       </label>
-      <input name={name} id={name} />
+      <input type="text" name={name} id={name} value={value} />
     </div>
   );
 }
