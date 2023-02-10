@@ -4,7 +4,7 @@ export default function Input({ name, label, value }: InputProps) {
   const [inputValue, setInputValue] = useState(value);
 
   return (
-    <div>
+    <div className="flex w-full flex-col gap-y-2.5">
       <label htmlFor={name} aria-labelledby={name}>
         {label}
       </label>
@@ -14,6 +14,7 @@ export default function Input({ name, label, value }: InputProps) {
         id={name}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
+        className="rounded border-transparent bg-slate-100 px-1.5 text-lg focus:border-transparent focus:ring-0"
       />
     </div>
   );

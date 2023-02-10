@@ -18,4 +18,12 @@ module.exports = {
       version: 28,
     },
   },
+  rules: {
+    "testing-library/no-await-sync-events": [
+      "error",
+      {
+        eventModules: ["fire-event"],
+      },
+    ],
+  },
 };
