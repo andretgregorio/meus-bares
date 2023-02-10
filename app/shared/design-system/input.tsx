@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Input({ name, label, value }: InputProps) {
+export default function Input({ name, label, value, placeholder }: InputProps) {
   const [inputValue, setInputValue] = useState(value);
 
   return (
@@ -11,6 +11,7 @@ export default function Input({ name, label, value }: InputProps) {
       <input
         type="text"
         name={name}
+        placeholder={placeholder}
         id={name}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}

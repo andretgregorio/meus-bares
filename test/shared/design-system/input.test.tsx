@@ -7,10 +7,16 @@ describe("Input", () => {
     label = "Minha Label",
     name = "custom-name",
     value = "",
+    placeholder = "",
   }: Partial<InputProps>) {
     return render(
       <form>
-        <Input label={label} name={name} value={value} />
+        <Input
+          label={label}
+          name={name}
+          value={value}
+          placeholder={placeholder}
+        />
       </form>
     );
   }
@@ -34,6 +40,18 @@ describe("Input", () => {
       const input = screen.getByRole("textbox");
 
       expect(input).toHaveValue(initialValue);
+    });
+
+    it("should render the placeholder text", () => {
+      const initialValue = "Initial Value";
+      const name = "my-custom-name-2";
+      const placeholder = "Type me!";
+
+      renderInput({ value: initialValue, name, placeholder });
+
+      const input = screen.getByRole("textbox");
+
+      expect(input).toHaveAttribute("placeholder", placeholder);
     });
   });
 
