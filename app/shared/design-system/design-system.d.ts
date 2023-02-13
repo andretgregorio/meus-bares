@@ -3,4 +3,7 @@ declare type InputProps = {
   placeholder?: string;
   name: string;
   value: string | number | readonly string[];
+  onChange: inputChangeFunction;
 };
+
+type inputChangeFunction = (value: string) => void;

@@ -8,6 +8,7 @@ describe("Input", () => {
     name = "custom-name",
     value = "",
     placeholder = "",
+    onChange = (value) => {},
   }: Partial<InputProps>) {
     return render(
       <form>
@@ -16,6 +17,7 @@ describe("Input", () => {
           name={name}
           value={value}
           placeholder={placeholder}
+          onChange={onChange}
         />
       </form>
     );
@@ -31,7 +33,7 @@ describe("Input", () => {
       expect(input).toBeVisible();
     });
 
-    it("should render the input with the initial value", () => {
+    it("should render the input with the value passed as props", () => {
       const initialValue = "Initial Value";
       const name = "my-custom-name-2";
 
@@ -53,17 +55,16 @@ describe("Input", () => {
 
       expect(input).toHaveAttribute("placeholder", placeholder);
     });
-  });
 
-  describe("User interactions", () => {
-    it("should change the input value when user types a different value", async () => {
+    it("should call the onChange function when user types", async () => {
       userEvent.setup();
 
       const initialValue = "Initial Value";
       const newValue = "New value typed by user";
       const name = "my-custom-name-2";
+      const onChangeFn = vi.fn();
 
-      renderInput({ value: initialValue, name });
+      renderInput({ value: initialValue, name, onChange: onChangeFn });
 
       const input = screen.getByRole("textbox");
 
@@ -73,7 +74,10 @@ describe("Input", () => {
 
       await userEvent.type(input, newValue);
 
-      expect(input).toHaveValue(newValue);
+      const cleanInputRemount = 1;
+      expect(onChangeFn).toHaveBeenCalledTimes(
+        newValue.length + cleanInputRemount
+      );
     });
   });
 });
