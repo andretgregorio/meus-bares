@@ -6,6 +6,7 @@ export default function Input({
   value,
   placeholder,
   onChange,
+  ariaLabel,
 }: InputProps) {
   return (
     <div className="flex w-full flex-col gap-y-2.5">
@@ -20,6 +21,7 @@ export default function Input({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="rounded border-transparent bg-slate-100 px-1.5 text-lg focus:border-transparent focus:ring-0"
+        aria-label={ariaLabel}
       />
     </div>
   );
