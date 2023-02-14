@@ -42,4 +42,12 @@ describe("Admin Page", () => {
 
     expect(categoriesInput).toBeVisible();
   });
+
+  it("has a submit button", () => {
+    renderAdminPage();
+
+    const button = screen.getByRole("button", { name: /salvar/i });
+
+    expect(button).toBeVisible();
+  });
 });

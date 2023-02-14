@@ -12,7 +12,7 @@ export default function AdminPage() {
     <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
       <Container>
         <h1>Adicionar novo lugar</h1>
-        <form className="mt-4">
+        <form className="mt-4" method="post">
           <InputGroup>
             <Input
               value={placeName}
@@ -42,6 +42,10 @@ export default function AdminPage() {
               onChange={setPlaceTags}
               ariaLabel="Categorias do lugar a ser cadastrado"
             />
+          </InputGroup>
+
+          <InputGroup>
+            <button type="submit">Salvar</button>
           </InputGroup>
         </form>
       </Container>
