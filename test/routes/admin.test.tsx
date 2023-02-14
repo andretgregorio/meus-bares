@@ -1,5 +1,10 @@
 import { render, screen } from "@testing-library/react";
+import type { PropsWithChildren } from "react";
 import Admin from "~/routes/admin";
+
+vi.mock("@remix-run/react", () => ({
+  Form: ({ children }: PropsWithChildren) => <form>{children}</form>,
+}));
 
 describe("Admin Page", () => {
   const renderAdminPage = () => render(<Admin />);
