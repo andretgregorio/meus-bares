@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import type { PropsWithChildren } from "react";
 import Admin from "~/routes/admin";
 
@@ -18,7 +19,7 @@ describe("Admin Page", () => {
     expect(heading).toHaveTextContent(/adicionar novo lugar/i);
   });
 
-  it("has an input field to add the name of the ew place", () => {
+  it("has an input field to add the name of the new place", () => {
     renderAdminPage();
 
     const nameInput = screen.getByRole("textbox", {
@@ -54,5 +55,28 @@ describe("Admin Page", () => {
     const button = screen.getByRole("button", { name: /salvar/i });
 
     expect(button).toBeVisible();
+  });
+
+  it('has calls the "createNewPlace" use case', async () => {
+    const placeName = "Place name";
+    const placeUrl = "Places website";
+    const placeTags = "beber comer";
+
+    renderAdminPage();
+
+    const nameInput = screen.getByRole("textbox", {
+      name: "Nome do lugar para cadastro",
+    });
+    await userEvent.type(nameInput, placeName);
+
+    const urlInput = screen.getByRole("textbox", {
+      name: "Endereço do site do bar a ser cadastrado",
+    });
+    await userEvent.type(urlInput, placeUrl);
+
+    const categoriesInput = screen.getByRole("textbox", {
+      name: "Categorias do lugar a ser cadastrado",
+    });
+    await userEvent.type(categoriesInput, placeTags);
   });
 });

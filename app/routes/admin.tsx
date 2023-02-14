@@ -1,5 +1,6 @@
 import type { ActionArgs } from "@remix-run/node";
 import { Form } from "@remix-run/react";
+import { createNewPlace } from "~/places/usecases/create-new-polace";
 import InputGroup from "~/places/views/components/input-group";
 import { Container } from "~/shared/design-system/container";
 import Input from "~/shared/design-system/input";
@@ -7,9 +8,13 @@ import Input from "~/shared/design-system/input";
 export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
 
-  const name = formData.get("name");
-  const websiteUrl = formData.get("website");
-  const tags = formData.get("tags");
+  const name = formData.get("name") as string;
+  const websiteUrl = formData.get("website") as string;
+  const tags = formData.get("tags") as string;
+
+  const place = { name, websiteUrl, tags: tags.split(" ") };
+
+  const newPlace = await createNewPlace(place);
 
   return null;
 };
